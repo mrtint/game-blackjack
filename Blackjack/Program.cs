@@ -11,9 +11,13 @@ namespace Blackjack
     {
         static void Main(string[] args)
         {
+            Player user = new User("Hansan", 5000);
             GameManager gm = new GameManager();
             gm.InitCards();
             gm.DisplayCards();
+            gm.AddPlayer(user);
+
+            gm.Start();
         }
     }
 }

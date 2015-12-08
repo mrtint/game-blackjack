@@ -1,6 +1,6 @@
 ﻿namespace Blackjack.Model
 {
-    class Card
+    public class Card
     {
         public Suit Suit { get; }
         public int Number { get; }
@@ -17,7 +17,7 @@
         }
     }
 
-    internal enum Suit
+    public enum Suit
     {
         Spade = 0, Diamond = 1, Heart = 2, Clover = 3
     }

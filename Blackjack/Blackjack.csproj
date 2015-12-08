@@ -44,10 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Card.cs" />
-    <Compile Include="Model\GameManager.cs" />
-    <Compile Include="Model\IGameManager.cs" />
+    <Compile Include="Game\GameManager.cs" />
     <Compile Include="Model\Player.cs" />
-    <Compile Include="Model\Rule.cs" />
+    <Compile Include="Game\Rule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
