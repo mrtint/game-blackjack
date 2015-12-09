@@ -1,4 +1,4 @@
-﻿using Blackjack.Model;
+﻿using Blackjack.Source;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +11,8 @@ namespace Blackjack
     {
         static void Main(string[] args)
         {
-            Player user = new User("Hansan", 5000);
-            GameManager gm = new GameManager();
+            IPlayer user = new User("Hansan", 5000);
+            Game gm = new Game();
             gm.InitCards();
             gm.DisplayCards();
             gm.AddPlayer(user);

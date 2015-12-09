@@ -5,27 +5,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blackjack.Model
+namespace Blackjack.Source
 {
-    public class GameManager
+    public class Game
     {
         public const int BLACK_JACK = 21;
         private const int CARD_COUNT = 52;
         private const int SUIT_SIZE = 4;
         private const int MAX_SIZE = 13;
 
+        private Shoe shoe;
         private List<Card> cards;
         private List<IPlayer> players;
 
-        private Random random;
-
-        public GameManager()
+        public Game()
         {
             cards = new List<Card>(CARD_COUNT);
             players = new List<IPlayer>();
 
             players.Add(new Dealer());
-            random = new Random((int)DateTime.Now.Ticks);
         }
 
         /// <summary>
@@ -42,12 +40,17 @@ namespace Blackjack.Model
                     cards.Add(c);
                 }
             }
-            Shuffle(cards, 5);
+            Blackjack.Source.Util.Shuffle(cards);
             foreach (var p in players)
             {
                 // init Player cards;
                 p.InitCards();
             }
+        }
+
+        private void Util(List<Card> cards, int v)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -68,6 +71,7 @@ namespace Blackjack.Model
 
         public void Hit(IPlayer player)
         {
+            Random random = new Random((int)DateTime.Now.Ticks);
             int index = random.Next(cards.Count);
             Card gacha = cards[index];
             player.AddCard(gacha);
@@ -94,28 +98,6 @@ namespace Blackjack.Model
             foreach (var p in players)
             {
                 p.DisplayMyCard();
-            }
-        }
-
-        /// <summary>
-        /// Shuffle Card Deck.
-        /// </summary>
-        /// <param name="listToShuffle"></param>
-        /// <param name="numberOfTimesToShuffle"></param>
-        private void Shuffle(List<Card> listToShuffle, int numberOfTimesToShuffle = 5)
-        {
-            List<Card> newList = new List<Card>();
-
-            for (int i = 0; i < numberOfTimesToShuffle; i++)
-            {
-                while (listToShuffle.Count > 0)
-                {
-                    int index = random.Next(listToShuffle.Count);
-                    newList.Add(listToShuffle[index]);
-                    listToShuffle.RemoveAt(index);
-                }
-                listToShuffle.AddRange(newList);
-                newList.Clear();
             }
         }
     }

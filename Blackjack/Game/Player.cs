@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Blackjack.Model
+namespace Blackjack.Source
 {
     public interface IPlayer
     {
