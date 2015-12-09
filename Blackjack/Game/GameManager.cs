@@ -9,19 +9,20 @@ namespace Blackjack.Model
 {
     public class GameManager
     {
+        public const int BLACK_JACK = 21;
         private const int CARD_COUNT = 52;
         private const int SUIT_SIZE = 4;
         private const int MAX_SIZE = 13;
 
         private List<Card> cards;
-        private List<Player> players;
+        private List<IPlayer> players;
 
         private Random random;
 
         public GameManager()
         {
             cards = new List<Card>(CARD_COUNT);
-            players = new List<Player>();
+            players = new List<IPlayer>();
 
             players.Add(new Dealer());
             random = new Random((int)DateTime.Now.Ticks);
@@ -49,6 +50,9 @@ namespace Blackjack.Model
             }
         }
 
+        /// <summary>
+        /// Show all cards in deck (Only for test)
+        /// </summary>
         public void DisplayCards()
         {
             foreach (var item in cards)
@@ -57,17 +61,22 @@ namespace Blackjack.Model
             }
         }
 
-        public void AddPlayer(Player player)
+        public void AddPlayer(IPlayer player)
         {
             players.Add(player);
         }
 
-        public void Hit(Player player)
+        public void Hit(IPlayer player)
         {
             int index = random.Next(cards.Count);
             Card gacha = cards[index];
             player.AddCard(gacha);
             cards.RemoveAt(index);
+        }
+
+        public void Stay(IPlayer player)
+        {
+
         }
 
         public void Start()
